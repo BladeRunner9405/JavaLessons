@@ -6,6 +6,24 @@ public class Pet {
     protected int age;
     protected String owner;
 
+    public static void main(String[] args) {
+        Cat cat = new Cat("1", 5, 3, "Tester", "4232", FeedType.Expensive);
+        Dog dog = new Dog("2", 5, 3, "Tester", "4232", FeedType.Expensive);
+        Parrot parrot = new Parrot("3", 5, 3, "Tester");
+        cat.say();
+        dog.walk();
+        dog.walk("Test");
+        parrot.fly();
+        Pet[] pets = new Pet[] {cat, dog, parrot};
+        for (Pet pet:
+             pets) {
+            pet.say();
+            System.out.println(pet instanceof Cat);
+            System.out.println(pet instanceof Dog);
+            System.out.println(pet instanceof Parrot);
+        }
+    }
+
     public Pet(String name, float weight, int age, String owner){
         this.name = name;
         this.weight = weight;
