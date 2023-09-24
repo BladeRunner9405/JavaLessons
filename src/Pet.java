@@ -14,20 +14,25 @@ public class Pet {
     }
 
     public void say(){
-        System.out.println("Helo, world!");
+        System.out.println("Привет! Я - " + name);
     }
 }
 
+enum FeedType{
+
+    Expensive,
+    Cheap
+}
 class Cat extends Pet{
     private String breed;
-    private enum feedType{};
-    public Cat(String name, float weight, int age, String owner){
+    private FeedType feedType;
+
+    public Cat(String name, float weight, int age, String owner, String breed, FeedType feedType) {
         super(name, weight, age, owner);
-        this.name = name;
-        this.weight = weight;
-        this.age = age;
-        this.owner = owner;
+        this.breed = breed;
+        this.feedType = feedType;
     }
+
     public void walk(){
         System.out.println("Прогуливаюсь");
     }
@@ -38,12 +43,13 @@ class Cat extends Pet{
 
 class Dog extends Pet{
     private String breed;
+    private FeedType feedType;
 
-    public Dog(String name, float weight, int age, String owner) {
+    public Dog(String name, float weight, int age, String owner, String breed, FeedType feedType) {
         super(name, weight, age, owner);
+        this.breed = breed;
+        this.feedType = feedType;
     }
-
-    private enum feedType{};
 
     public void walk(){
         System.out.println("Прогуливаюсь");
@@ -51,6 +57,7 @@ class Dog extends Pet{
     public void walk(String name){
         System.out.println("Со мной гуляет " + name);
     }
+
 }
 
 
