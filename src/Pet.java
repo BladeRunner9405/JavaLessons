@@ -1,4 +1,4 @@
-public static class Pet {
+public class Pet {
     protected String name;
     protected float weight;
     protected int age;
@@ -14,16 +14,4 @@ public static class Pet {
     public void say(){
         System.out.println("Helo, world!");
     }
-
-    public static void main(String[] args) {
-        Cat cat = new Cat();
-    }
 }
-
-public static class Cat extends Pet {
-    @Override
-    public void doSound() {
-        System.out.println("I'm a cat! Meow! Meow!");
-    }
-}
-

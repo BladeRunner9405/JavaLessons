@@ -2,6 +2,7 @@ public class Cat extends Pet{
     private String breed;
     private enum feedType{};
     public Cat(String name, float weight, int age, String owner){
+        super(name, weight, age, owner);
         this.name = name;
         this.weight = weight;
         this.age = age;

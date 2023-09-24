@@ -4,6 +4,10 @@ public class Parrot extends Pet{
     public String country;
     public boolean isLegal;
 
+    public Parrot(String name, float weight, int age, String owner) {
+        super(name, weight, age, owner);
+    }
+
     public void fly(){
         Random random = new Random();
         int time = random.nextInt(60 + 1);
