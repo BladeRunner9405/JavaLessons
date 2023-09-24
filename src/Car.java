@@ -84,7 +84,7 @@ public class Car {
 
     public void info(){
         System.out.println("Цвет: " + colour);
-        System.out.println("Модэль: " + model);
+        System.out.println("Модель: " + model);
         System.out.println("Бак: " + fuel + "/" + maxFuel);
         System.out.println("Расход топлива: " + engine.consumption + "л/100 км");
         System.out.print("Состояние двигателя: ");
