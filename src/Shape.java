@@ -11,7 +11,7 @@ class Shape {
         Cylinder cylinder = new Cylinder(13, 4);
         Pyramid pyramid = new Pyramid(13, 213);
         ColourPyramid colourPyramid = new ColourPyramid(13, 213, "white");
-        Shape[] shapes = new Shape[] {shape, ball, cylinder, pyramid, colourPyramid};
+        Shape[] shapes = new Shape[]{shape, ball, cylinder, pyramid, colourPyramid};
         for (Shape elem :
                 shapes) {
             elem.print();
@@ -27,6 +27,7 @@ class Shape {
 final class Ball extends Shape {
 
     private double radius;
+
     public Ball(double radius) {
         super((4 * 3.14 * radius * radius * radius) / 3);
         this.radius = radius;
@@ -41,6 +42,7 @@ final class Ball extends Shape {
 
 final class Cylinder extends Shape {
     private double height;
+
     public Cylinder(double volume, double height) {
         super(volume);
         this.height = height;
@@ -70,7 +72,7 @@ sealed class Pyramid extends Shape permits ColourPyramid {
     }
 }
 
-non-sealed class ColourPyramid extends Pyramid{
+non-sealed class ColourPyramid extends Pyramid {
     private String colour;
     // your code
 
