@@ -49,4 +49,9 @@ class TooLongTextAnalyzer implements TextAnalyzer{
     public TooLongTextAnalyzer(int maxL){
         this.maxL = maxL;
     }
+
+    @Override
+    public Label processText(String text) {
+        return null;
+    }
 }
