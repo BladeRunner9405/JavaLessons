@@ -1,57 +1,78 @@
 import java.awt.*;
+import java.util.Objects;
 
 interface TextAnalyzer {
-    Label processText(String text);
+  Label processText(String text);
 }
 
-abstract class KeywordAnalyzer implements TextAnalyzer{
-    String[] badWords;
-    String[] words;
-    String verdict;
+abstract class KeywordAnalyzer implements TextAnalyzer {
+  String[] keywords;
 
-    public Label processText(String text){
-        for (String elem:
-                words) {
-            for (String word :
-                    badWords) {
-                if (elem.contains(word)){
-                    return new Label(verdict);
-                }
-            }
-        }
-        return new Label("ок");
+  String label;
+
+  @Override
+  public Label processText(String text) {
+    text = text.toLowerCase();
+    for (String elem : keywords) {
+      if (text.contains(elem)) {
+        return new Label(label);
+      }
     }
+    return new Label("ОК");
+  }
 }
-//class NegativeTextAnalyzer extends KeywordAnalyzer  {
-//    String[] text;
-//    public NegativeTextAnalyzer(){
-//
-//    }
-//
-//    @Override
-//    public Label processText(String text) {
-//        verdict = "негативное содержание";
-//        super(text);
-//    }
-//}
-//
-//class SpamAnalyzer extends KeywordAnalyzer{
-//    String[] text;
-//    public SpamAnalyzer(String[] args){
-//        text = args;
-//    }
-//}
 
+class SpamAnalyzer extends KeywordAnalyzer {
 
+  public SpamAnalyzer(String[] keywords) {
+    this.keywords = keywords;
+    this.label = "спам";
+  }
+}
 
-class TooLongTextAnalyzer implements TextAnalyzer{
-    int maxL;
-    public TooLongTextAnalyzer(int maxL){
-        this.maxL = maxL;
+class NegativeTextAnalyzer extends KeywordAnalyzer {
+  public NegativeTextAnalyzer() {
+    this.keywords = new String[] {":(", "=(", ":|"};
+    this.label = "негативное содержание";
+  }
+}
+
+class TooLongTextAnalyzer implements TextAnalyzer {
+  int maxl;
+
+  public TooLongTextAnalyzer(int maxl) {
+    this.maxl = maxl;
+  }
+
+  @Override
+  public Label processText(String text) {
+    if (text.length() <= maxl) {
+      return new Label("ОК");
     }
+    return new Label("слишком длинный");
+  }
+}
 
-    @Override
-    public Label processText(String text) {
-        return null;
+class Test {
+  public static void main(String[] args) {
+    String comment = " Привет! Тест!";
+    System.out.println(
+        checkLabels(
+            new TextAnalyzer[] {
+              new SpamAnalyzer(new String[] {"привет"}),
+              new NegativeTextAnalyzer(),
+              new TooLongTextAnalyzer(16)
+            },
+            comment));
+  }
+
+  public static Label checkLabels(TextAnalyzer[] analyzers, String comment) {
+    for (TextAnalyzer analyzer : analyzers) {
+      Label label = analyzer.processText(comment);
+      if (!Objects.equals(label, new Label("ОК"))) {
+        return label;
+      }
     }
+    return new Label("ОК");
+  }
 }
