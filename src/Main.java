@@ -2,9 +2,7 @@ import java.math.BigInteger;
 
 public class Main {
     public static void main(String[] args) {
-        //        int[] arr =  {1, 2, 3, 4, 3, 4, 5};
-        //        for(int a: task11(arr, 3)) System.out.print(a + " ");
-        //        task5(BigInteger.TEN);
+
     }
 
     public static void task1(int a) {
