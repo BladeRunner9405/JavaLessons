@@ -12,5 +12,5 @@ public interface TupleInterface<E> {
   void remove(E el);
 
   boolean isEmpty();
-  // void orElse(int i, T default);
+  // void orElse(int i, T default); ???
 }
