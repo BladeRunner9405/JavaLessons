@@ -1,4 +1,7 @@
 package refs;
+import interfaces.IntSequence;
+import interfaces.Printable;
+import interfaces.SignDeterminant;
 
 public class Main {
   public static void main(String[] args) {
