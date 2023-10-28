@@ -1,3 +1,5 @@
+package refs;
+
 public class Main {
   public static void main(String[] args) {
     IntSequence a = IntSequence.of(1, 2, 3);

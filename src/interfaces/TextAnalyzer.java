@@ -1,3 +1,5 @@
+package interfaces;
+
 import java.awt.*;
 import java.util.Objects;
 

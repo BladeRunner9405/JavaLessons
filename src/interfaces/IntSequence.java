@@ -1,3 +1,5 @@
+package interfaces;
+
 public interface IntSequence {
   static IntSequence of(int... args) {
     return new IntSequence() {

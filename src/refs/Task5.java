@@ -1,9 +1,12 @@
-public class Task5 {
-    public void authorize(String login, String password, String confirmPassword){
+package refs;
 
+public class Task5 {
+    public void authorize(String login, String password, String confirmPassword) throws Exception {
+        validate(login, new WrongLoginException());
+        validate(login, new WrongPasswordException());
     }
 
-    public void validate(String word, Exception exception) throws Exception {
+    public static void validate(String word, Exception exception) throws Exception {
         if (word.length() > 20){
             throw exception;
         }
@@ -23,3 +26,6 @@ public class Task5 {
 
     }
 }
+
+class WrongLoginException  extends Exception{ }
+class WrongPasswordException   extends Exception{ }
