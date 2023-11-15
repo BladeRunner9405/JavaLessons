@@ -138,9 +138,13 @@ public class Homework1 {
 
     // task 9
     static int[] reverse(int[] arr) {
-        int[] newArr = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) newArr[arr.length - 1 - i] = arr[i];
-        return newArr;
+        for (int i = 0; i < arr.length / 2; i++) {
+            int a = arr[i];
+            int b = arr[arr.length - i];
+            arr[arr.length - i] = a;
+            arr[i] = b;
+        }
+        return arr;
     }
 
 
@@ -163,9 +167,9 @@ public class Homework1 {
     }
 
     public static int countNumInArr(int[] arr, int badNum) {
-        int C = 0;
-        for (int a : arr) if (a == badNum) C += 1;
-        return C;
+        int c = 0;
+        for (int a : arr) if (a == badNum) c += 1;
+        return c;
     }
 
     // task 11
