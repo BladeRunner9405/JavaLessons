@@ -1,120 +1,53 @@
 import java.math.BigInteger;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
+        Map<Integer, String> originalMap = Map.of(1, "one", 2, "two");
+        Map<String, Collection<Integer>> expectedMap = Map.of( "one", List.of(1), "two", List.of(2));
     }
 
-    public static void task1(int a) {
-        System.out.println(Integer.toBinaryString(a));
-        System.out.println(Integer.toOctalString(a));
-        System.out.println(Integer.toHexString(a));
-    }
+    public static <K, V> Map<V, Collection<K>> inverse(Map<? extends K, ? extends V> map){
+        Map<V, Collection<K>> invertedMap = new HashMap<>();
+        for (Map.Entry<? extends K, ? extends V> entry : map.entrySet()){
+            V value = entry.getValue();
+            Collection<K> keys = invertedMap.get(value);
+            if (keys == null)
+                keys = new ArrayList<>();
+            invertedMap.put(value, keys);
 
-    public static void task2(int a) {
-        System.out.println(Math.floorMod(a, 360));
-    }
-
-    public static void task3(int a, int b, int c) {
-        System.out.println(Math.max(a, Math.max(b, c)));
-    }
-
-    public static int fact(int a) {
-        if (a < 0) return -1;
-        if (a <= 1) return 1;
-        else return a * fact(a - 1);
-    }
-
-    public static void task4(int a) {
-        System.out.println(fact(a));
-    }
-
-    public static void task5(BigInteger Num) {
-        BigInteger S = BigInteger.ONE;
-        for (BigInteger a = BigInteger.ONE; !Num.equals(a); a = a.add(BigInteger.ONE)) {
-            S = S.multiply(a);
+            keys.add(entry.getKey());
         }
-        S = S.multiply(Num);
-        System.out.println(S);
+        return invertedMap;
     }
 
-    public static void task6() {
-        for (int i = 1; i < 10; i++) {
-            for (int j = 1; j < 10; j++) {
-                System.out.print(i * j + "\t");
-            }
-            System.out.println();
-        }
+    public static <E> Set<E> union(Set<? extends E> s1, Set<? extends E> s2) {
+        Set<E> unionSet = new HashSet<>(s1);
+        unionSet.addAll(s2);
+        return unionSet;
     }
 
-    public static float task7(int... args) {
-        int S = 0;
-        for (int a : args) S += a;
-        return (float) S / args.length;
+
+
+    public static <E> Set<E> intersection(Set<? extends E> s1, Set<? extends E> s2) {
+        Set<E> intersectionSet = new HashSet<>(s1);
+        intersectionSet.retainAll(s2);
+        return intersectionSet;
     }
 
-    public static boolean task8(int[][] args) {
-        if (args.length == 0) return false;
-        for (int[] arg : args) if (args.length != arg.length) return false;
-        int S = 0, currS = 0;
-        boolean first = true;
-        for (int[] line : args) {
-            currS = 0;
-            for (int a : line) currS += a;
-            if (first) {
-                S = currS;
-                first = false;
-            } else if (S != currS) return false;
-        }
-        currS = 0;
-        for (int i = 0; i < args.length; i++) currS += args[i][i];
-        if (S != currS) return false;
 
-        currS = 0;
-        for (int i = 0; i < args.length; i++) currS += args[i][args.length - 1 - i];
-        if (S != currS) return false;
 
-        return true;
+    public static <E> Set<E> difference(Set<? extends E> s1, Set<? extends E> s2){
+        Set<E> differenceSet = new HashSet<>(s1);
+        differenceSet.removeAll(s2);
+        return differenceSet;
     }
 
-    public static int[] task9(int[] arr) {
-        int[] newArr = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) newArr[arr.length - 1 - i] = arr[i];
-        return newArr;
-    }
 
-    public static int[] task10(int[] arr) {
-        boolean changed = true;
-        while (changed) {
-            changed = false;
-            for (int i = 0; i < arr.length - 1; i++) {
-                int a = arr[i];
-                int b = arr[i + 1];
-                if (a > b) {
-                    arr[i + 1] = a;
-                    arr[i] = b;
-                    changed = true;
-                }
-            }
-        }
-        return arr;
-    }
 
-    public static int countNumInArr(int[] arr, int badNum) {
-        int C = 0;
-        for (int a : arr) if (a == badNum) C += 1;
-        return C;
-    }
-
-    public static int[] task11(int[] arr, int badNum) {
-        int[] newArr = new int[arr.length - countNumInArr(arr, badNum)];
-        int i = 0;
-        for (int a : arr) {
-            if (a != badNum) {
-                newArr[i] = a;
-                i++;
-            }
-        }
-        return newArr;
+    public static <E> Set<E> symmetricDifference(Set<? extends E> s1, Set<? extends E> s2){
+        Set<E> symmetricDifferenceSet = new HashSet<>(union(s1, s2));
+        symmetricDifferenceSet.removeAll(intersection(s1, s2));
+        return symmetricDifferenceSet;
     }
 }
