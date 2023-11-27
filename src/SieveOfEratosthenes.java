@@ -13,15 +13,12 @@ public class SieveOfEratosthenes {
     }
 
     public static List<Integer> findPrimes(int n) {
-        // Шаг 1: Создаем пустой HashSet<>
         HashSet<Integer> numbers = new HashSet<>();
 
-        // Шаг 2: Заполняем HashSet<> всеми числами от 2 до n
         for (int i = 2; i <= n; i++) {
             numbers.add(i);
         }
 
-        // Шаг 3-4: Применяем решето Эратосфена
         int p = 2;
         while (p * p <= n) {
             if (numbers.contains(p)) {
