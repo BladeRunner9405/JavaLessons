@@ -8,6 +8,12 @@ public class Main {
         System.out.println(f1.apply(5));
         Function<String, String> f2 = bind((a, b) -> b.substring(0, a), 5);
         System.out.println(f2.apply("1234567899"));
+        Function<String, String> sayHello = saySmth("Hello");
+        System.out.println(sayHello.apply("Alice")); // Выведет "Hello, Alice!"
+    }
+
+    public static Function<String, String> saySmth(String word) {
+        return bind((a, b) -> a + ", " +  b, word);
     }
     static <A, B, C> Function<B, C> bind(BiFunction<A, B, C> fn, A a) {
         return b -> fn.apply(a, b);
